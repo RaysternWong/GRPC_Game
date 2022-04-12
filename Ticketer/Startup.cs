@@ -19,7 +19,7 @@ namespace RyGamingProvider
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
-            services.AddSingleton<TicketRepository>();
+            services.AddSingleton<PlayerRepository>();
 
             services.AddAuthorization(options =>
             {

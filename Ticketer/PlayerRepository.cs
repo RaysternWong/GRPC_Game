@@ -2,14 +2,36 @@
 
 namespace RyGamingProvider
 {
-    public class TicketRepository
+    public class PlayerRepository
     {
-        private readonly ILogger<TicketRepository> _logger;
+        private readonly ILogger<PlayerRepository> _logger;
         private int _availableTickets = 5;
 
-        public TicketRepository(ILoggerFactory loggerFactory)
+        private double _walletBalance = 0;
+
+        private const string Name = "Admin";
+        private const string Password = "123";
+
+        public PlayerRepository(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<TicketRepository>();
+            _logger = loggerFactory.CreateLogger<PlayerRepository>();
+        }
+
+        public bool Login(string name, string password)
+        {
+            if (name == Name && password == Password)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public double AddAmount(double amount)
+        {
+            _walletBalance += amount;
+
+            return _walletBalance;
         }
 
         public int GetAvailableTickets()

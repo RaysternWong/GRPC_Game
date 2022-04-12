@@ -8,9 +8,9 @@ namespace RyGamingProvider.Services
 {
     public class RyGamingService : RyGaming.RyGamer.RyGamerBase
     {
-        private readonly TicketRepository _ticketRepository;
+        private readonly PlayerRepository _ticketRepository;
 
-        public RyGamingService(TicketRepository ticketRepository)
+        public RyGamingService(PlayerRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
         }

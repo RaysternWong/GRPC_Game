@@ -25,3 +25,42 @@ message BuyTicketsRequest {
 message BuyTicketsResponse {
   bool success = 1;
 }
+
+message LoginRequest{
+  string Name = 1;
+  string Password =2;
+}
+
+message WalletFundingRequest {
+  double FundingAmount =1;
+}
+
+message WalletWithdrawRequest {
+  double WithdrawAmount =1;
+}
+
+
+message LoginResponse {
+ bool success = 1;
+ string message = 2;
+}
+
+
+
+message WalletFundingResponse {
+	bool success = 1;
+	string message = 2;
+	double balanceAfter =3;   
+}
+
+message WalletWithdrawResponse {
+	bool success = 1;
+	string message = 2;
+	double balanceAfter =3;   
+}
+
+message BetResponse {
+	bool success = 1;
+	string message = 2;
+	double WinLossAmount =3;   
+}
