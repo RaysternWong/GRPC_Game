@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Ticketer
+namespace RyGamingProvider
 {
     public class TicketRepository
     {

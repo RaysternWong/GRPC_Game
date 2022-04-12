@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Ticketer;
 
-namespace GrpcGreeter
+namespace RyGamingProvider
 {
     public class Program
     {

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\ticket.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\ryGaming.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

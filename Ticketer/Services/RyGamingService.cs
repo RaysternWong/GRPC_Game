@@ -1,16 +1,16 @@
-using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
-using Ticket;
+using RyGaming;
+using System.Threading.Tasks;
 
-namespace Ticketer.Services
+namespace RyGamingProvider.Services
 {
-    public class TicketerService : Ticket.Ticketer.TicketerBase
+    public class RyGamingService : RyGaming.RyGamer.RyGamerBase
     {
         private readonly TicketRepository _ticketRepository;
 
-        public TicketerService(TicketRepository ticketRepository)
+        public RyGamingService(TicketRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
         }

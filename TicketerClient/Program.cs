@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using Grpc.Core;
+using Grpc.Net.Client;
+using RyGaming;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
-using Grpc.Net.Client;
-using Ticket;
 
 namespace GrpcGreeterClient
 {
-    class Program
+    internal class Program
     {
         // The port number(5001) must match the port of the gRPC server.
         private const string Address = "localhost:5001";
 
         private static string _token;
 
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var channel = CreateAuthenticatedChannel($"https://{Address}");
-            var client = new Ticketer.TicketerClient(channel);
+            var client = new RyGamer.RyGamerClient(channel);
 
             Console.WriteLine("gRPC Ticketer");
             Console.WriteLine();
@@ -39,12 +39,15 @@ namespace GrpcGreeterClient
                     case '1':
                         await GetAvailableTickets(client);
                         break;
+
                     case '2':
                         await PurchaseTicket(client);
                         break;
+
                     case '3':
                         _token = await Authenticate();
                         break;
+
                     case '4':
                         exiting = true;
                         break;
@@ -93,7 +96,7 @@ namespace GrpcGreeterClient
             return token;
         }
 
-        private static async Task PurchaseTicket(Ticketer.TicketerClient client)
+        private static async Task PurchaseTicket(RyGamer.RyGamerClient client)
         {
             Console.WriteLine("Purchasing ticket...");
             try
@@ -114,7 +117,7 @@ namespace GrpcGreeterClient
             }
         }
 
-        private static async Task GetAvailableTickets(Ticketer.TicketerClient client)
+        private static async Task GetAvailableTickets(RyGamer.RyGamerClient client)
         {
             Console.WriteLine("Getting available ticket count...");
             var response = await client.GetAvailableTicketsAsync(new Empty());

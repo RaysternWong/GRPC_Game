@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-package ticket;
+package ryGaming;
 
-service Ticketer {
+service RyGamer {
   // Get available ticket count
   rpc GetAvailableTickets (google.protobuf.Empty) returns (AvailableTicketsResponse);
   // Buy tickets

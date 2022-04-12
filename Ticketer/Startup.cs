@@ -1,16 +1,16 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Ticketer.Services;
+using RyGamingProvider.Services;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
-namespace Ticketer
+namespace RyGamingProvider
 {
     public class Startup
     {
@@ -61,7 +61,7 @@ namespace Ticketer
             {
                 // Communication with gRPC endpoints must be made through a gRPC client.
                 // To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909
-                endpoints.MapGrpcService<TicketerService>();
+                endpoints.MapGrpcService<RyGamingService>();
 
                 endpoints.MapGet("/generateJwtToken", context =>
                 {
