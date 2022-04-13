@@ -1,21 +1,17 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using RyGamingProvider.Interface;
 using System;
 
 namespace RyGamingProvider
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
-        private readonly ILogger<PlayerRepository> _logger;
-        private int _availableTickets = 5;
-
         private const string Name = "Win10";
         private const string Password = "123";
 
         public double WalletBalance { get; set; } = 100;
 
-        public PlayerRepository(ILoggerFactory loggerFactory)
+        public PlayerRepository()
         {
-            _logger = loggerFactory.CreateLogger<PlayerRepository>();
         }
 
         public bool Login(string name, string password, out string message, out string token)
@@ -63,11 +59,6 @@ namespace RyGamingProvider
             return WalletBalance;
         }
 
-        public int GetAvailableTickets()
-        {
-            return _availableTickets;
-        }
-
         public double Bet(double amount)
         {
             if (amount > WalletBalance)
@@ -86,23 +77,6 @@ namespace RyGamingProvider
             WalletBalance = Math.Round(WalletBalance, 2);
 
             return result;
-        }
-
-        public bool BuyTickets(string user, int count)
-        {
-            var updatedCount = _availableTickets - count;
-
-            // Negative ticket count means there weren't enough available tickets
-            if (updatedCount < 0)
-            {
-                _logger.LogWarning("{User} failed to purchase tickets. Not enough available tickets.", user);
-                return false;
-            }
-
-            _availableTickets = updatedCount;
-
-            _logger.LogInformation("{User} successfully purchased tickets.", user);
-            return true;
         }
     }
 }

@@ -1,6 +1,7 @@
 using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
 using RyGaming;
+using RyGamingProvider.Interface;
 using System;
 using System.Threading.Tasks;
 
@@ -8,9 +9,9 @@ namespace RyGamingProvider.Services
 {
     public class RyGamingService : RyGaming.RyGamer.RyGamerBase
     {
-        private readonly PlayerRepository _playerRepository;
+        private readonly IPlayerRepository _playerRepository;
 
-        public RyGamingService(PlayerRepository playerRepository)
+        public RyGamingService(IPlayerRepository playerRepository)
         {
             _playerRepository = playerRepository;
         }
@@ -84,11 +85,13 @@ namespace RyGamingProvider.Services
         {
             bool isSuccess = true;
             double winLossAmount = _playerRepository.WalletBalance;
-            string message = $"Successful Bet - {request.BetAmount}";
+
+            string message = $"BetAmount : {request.BetAmount}, ";
 
             try
             {
                 winLossAmount = _playerRepository.Bet(request.BetAmount);
+                message += "WinLossAmount: winLossAmount ";
             }
             catch (Exception ex)
             {
