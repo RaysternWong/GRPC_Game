@@ -99,27 +99,6 @@ namespace GrpcGreeterClient
             return token;
         }
 
-        private static async Task PurchaseTicket(RyGamer.RyGamerClient client)
-        {
-            Console.WriteLine("Purchasing ticket...");
-            try
-            {
-                var response = await client.BuyTicketsAsync(new BuyTicketsRequest { Count = 1 });
-                if (response.Success)
-                {
-                    Console.WriteLine("Purchase successful.");
-                }
-                else
-                {
-                    Console.WriteLine("Purchase failed. No tickets available.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error purchasing ticket." + Environment.NewLine + ex.ToString());
-            }
-        }
-
         private static async Task Login(RyGamer.RyGamerClient client)
         {
             // _token = await Authenticate();
