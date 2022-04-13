@@ -13,6 +13,11 @@ namespace RyGamingProviderClientLibrary
 
     public class GameBet
     {
+        public GameBet(string token)
+        {
+            Connection._token = token;
+        }
+
         public BetResponse SingleBet(double betAmount)
         {
             return SingleBetAsync(betAmount).Result;

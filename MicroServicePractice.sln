@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RyGamingProviderClient", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyGamingProviderClientLibrary", "RyGamingProviderClientLibrary\RyGamingProviderClientLibrary.csproj", "{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyGamingProviderApi", "RyGamingProviderApi\RyGamingProviderApi.csproj", "{FE741012-2A0A-4F46-BF3E-71838CCE104C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE741012-2A0A-4F46-BF3E-71838CCE104C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE741012-2A0A-4F46-BF3E-71838CCE104C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE741012-2A0A-4F46-BF3E-71838CCE104C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE741012-2A0A-4F46-BF3E-71838CCE104C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,8 +18,9 @@ namespace RyGamingProviderClientLibrary
 
     public class FundTransfer
     {
-        public FundTransfer()
+        public FundTransfer(string token)
         {
+            Connection._token = token;
         }
 
         public TopUpResponse TopUp(double amount)
