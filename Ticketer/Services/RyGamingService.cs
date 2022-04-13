@@ -43,7 +43,7 @@ namespace RyGamingProvider.Services
         {
             bool isSuccess = true;
             double balanceAfter = _playerRepository.WalletBalance;
-            string message = $"Successful TopUp - {request.TopUpAmount}";
+            string message = $"Successful TopUp :{request.TopUpAmount}";
 
             try
             {
@@ -68,7 +68,7 @@ namespace RyGamingProvider.Services
         {
             bool isSuccess = true;
             double balanceAfter = _playerRepository.WalletBalance;
-            string message = $"Successful Withdraw - {request.WithdrawAmount}";
+            string message = $"Successful Withdraw :{request.WithdrawAmount}";
 
             try
             {

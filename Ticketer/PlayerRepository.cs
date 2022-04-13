@@ -8,7 +8,7 @@ namespace RyGamingProvider
         private readonly ILogger<PlayerRepository> _logger;
         private int _availableTickets = 5;
 
-        private const string Name = "Admin";
+        private const string Name = "Win10";
         private const string Password = "123";
 
         public double WalletBalance { get; set; } = 100;

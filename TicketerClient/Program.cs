@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using RyGaming;
+using RyGamingProvider;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -97,6 +98,8 @@ namespace GrpcGreeterClient
             var token = await tokenResponse.Content.ReadAsStringAsync();
             Console.WriteLine("Successfully authenticated.");
 
+            string tokenBB = TokenCreater.GenerateJwtToken(HttpUtility.UrlEncode(Environment.UserName));
+
             return token;
         }
 
@@ -123,11 +126,11 @@ namespace GrpcGreeterClient
 
         private static async Task Login(RyGamer.RyGamerClient client)
         {
-            Console.WriteLine("Getting available ticket count...");
+            // _token = await Authenticate();
 
             var request = new LoginRequest()
             {
-                Name = "Admin",
+                Name = "Win10",
                 Password = "123"
             };
 
@@ -155,8 +158,6 @@ namespace GrpcGreeterClient
 
         private static async Task TopUp(RyGamer.RyGamerClient client)
         {
-            Console.WriteLine("Getting available ticket count...");
-
             var request = new WalletTopUpRequest()
             {
                 TopUpAmount = 100
@@ -169,8 +170,6 @@ namespace GrpcGreeterClient
 
         private static async Task Bet(RyGamer.RyGamerClient client)
         {
-            Console.WriteLine("Getting available ticket count...");
-
             var request = new BetRequest()
             {
                 BetAmount = 50

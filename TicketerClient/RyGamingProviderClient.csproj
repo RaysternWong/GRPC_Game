@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ticketer\RyGamingProvider.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="Protos\ryGaming.proto" GrpcServices="Client" />
   </ItemGroup>
 
