@@ -91,7 +91,7 @@ namespace RyGamingProvider.Services
             try
             {
                 winLossAmount = _playerRepository.Bet(request.BetAmount);
-                message += "WinLossAmount: winLossAmount ";
+                message += $"WinLossAmount: {winLossAmount} ";
             }
             catch (Exception ex)
             {
