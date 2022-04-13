@@ -101,8 +101,6 @@ namespace GrpcGreeterClient
 
         private static async Task Login(RyGamer.RyGamerClient client)
         {
-            // _token = await Authenticate();
-
             var request = new LoginRequest()
             {
                 Name = "Win10",
