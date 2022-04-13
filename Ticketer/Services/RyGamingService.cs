@@ -8,18 +8,18 @@ namespace RyGamingProvider.Services
 {
     public class RyGamingService : RyGaming.RyGamer.RyGamerBase
     {
-        private readonly PlayerRepository _ticketRepository;
+        private readonly PlayerRepository _playerRepository;
 
-        public RyGamingService(PlayerRepository ticketRepository)
+        public RyGamingService(PlayerRepository playerRepository)
         {
-            _ticketRepository = ticketRepository;
+            _playerRepository = playerRepository;
         }
 
         public override Task<AvailableTicketsResponse> GetAvailableTickets(Empty request, ServerCallContext context)
         {
             return Task.FromResult(new AvailableTicketsResponse
             {
-                Count = _ticketRepository.GetAvailableTickets()
+                Count = _playerRepository.GetAvailableTickets()
             });
         }
 
@@ -30,7 +30,7 @@ namespace RyGamingProvider.Services
 
             return Task.FromResult(new BuyTicketsResponse
             {
-                Success = _ticketRepository.BuyTickets(user.Identity.Name!, request.Count)
+                Success = _playerRepository.BuyTickets(user.Identity.Name!, request.Count)
             });
         }
     }

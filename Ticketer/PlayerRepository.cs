@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace RyGamingProvider
 {
@@ -6,7 +7,6 @@ namespace RyGamingProvider
     {
         private readonly ILogger<PlayerRepository> _logger;
         private int _availableTickets = 5;
-
         private double _walletBalance = 0;
 
         private const string Name = "Admin";
@@ -27,9 +27,21 @@ namespace RyGamingProvider
             return false;
         }
 
-        public double AddAmount(double amount)
+        public double TopUp(double amount)
         {
             _walletBalance += amount;
+
+            return _walletBalance;
+        }
+
+        public double Withdraw(double amount)
+        {
+            if (amount > _walletBalance)
+            {
+                throw new Exception("Withdraw Amount is more than wallet balance");
+            }
+
+            _walletBalance -= amount;
 
             return _walletBalance;
         }
@@ -37,6 +49,23 @@ namespace RyGamingProvider
         public int GetAvailableTickets()
         {
             return _availableTickets;
+        }
+
+        public double Bet(double amount)
+        {
+            if (amount > _walletBalance)
+            {
+                throw new Exception("Bet Amount is more than wallet balance");
+            }
+
+            Random random = new Random();
+            double lossMax = -amount;
+            double winMax = amount;
+            double result = (random.NextDouble() * (winMax - lossMax) + lossMax);
+
+            _walletBalance += result;
+
+            return result;
         }
 
         public bool BuyTickets(string user, int count)
