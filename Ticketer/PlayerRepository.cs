@@ -7,43 +7,60 @@ namespace RyGamingProvider
     {
         private readonly ILogger<PlayerRepository> _logger;
         private int _availableTickets = 5;
-        private double _walletBalance = 0;
 
         private const string Name = "Admin";
         private const string Password = "123";
+
+        public double WalletBalance { get; set; } = 100;
 
         public PlayerRepository(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<PlayerRepository>();
         }
 
-        public bool Login(string name, string password)
+        public bool Login(string name, string password, out string message, out string token)
         {
-            if (name == Name && password == Password)
+            bool success = false;
+            token = string.Empty;
+
+            if (name == Name)
             {
-                return true;
+                if (password == Password)
+                {
+                    message = "Login Success";
+                    token = TokenCreater.GenerateJwtToken(name);
+                    success = true;
+                }
+                else
+                {
+                    message = "Password is wrong";
+                }
+            }
+            else
+            {
+                message = "User is not exist";
             }
 
-            return false;
+            return success;
         }
 
         public double TopUp(double amount)
         {
-            _walletBalance += amount;
+            WalletBalance += amount;
 
-            return _walletBalance;
+            return WalletBalance;
         }
 
         public double Withdraw(double amount)
         {
-            if (amount > _walletBalance)
+            if (amount > WalletBalance)
             {
                 throw new Exception("Withdraw Amount is more than wallet balance");
             }
 
-            _walletBalance -= amount;
+            WalletBalance -= amount;
 
-            return _walletBalance;
+            return WalletBalance;
         }
 
         public int GetAvailableTickets()
@@ -53,7 +70,7 @@ namespace RyGamingProvider
 
         public double Bet(double amount)
         {
-            if (amount > _walletBalance)
+            if (amount > WalletBalance)
             {
                 throw new Exception("Bet Amount is more than wallet balance");
             }
@@ -63,7 +80,7 @@ namespace RyGamingProvider
             double winMax = amount;
             double result = (random.NextDouble() * (winMax - lossMax) + lossMax);
 
-            _walletBalance += result;
+            WalletBalance += result;
 
             return result;
         }

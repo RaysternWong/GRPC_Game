@@ -35,16 +35,16 @@ message BuyTicketsResponse {
 }
 
 message LoginRequest{
-  string Name = 1;
-  string Password =2;
+  string name = 1;
+  string password =2;
 }
 
 message WalletTopUpRequest {
-  double TopUpAmount =1;
+  double topUpAmount =1;
 }
 
 message WalletWithdrawRequest {
-  double WithdrawAmount =1;
+  double withdrawAmount =1;
 }
 
 
@@ -68,11 +68,12 @@ message WalletWithdrawResponse {
 
 message BetRequest {
 	string userId = 1;
-	double betAmount =2;   
+	double BetAmount =2;   
 }
 
 message BetResponse {
 	bool success = 1;
 	string message = 2;
-	double WinLossAmount =3;   
+	double balanceAfter =3;
+	double winLossAmount =4;   
 }
