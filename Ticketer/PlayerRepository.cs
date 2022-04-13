@@ -80,7 +80,9 @@ namespace RyGamingProvider
             double winMax = amount;
             double result = (random.NextDouble() * (winMax - lossMax) + lossMax);
 
-            WalletBalance += Math.Round(result, 2);
+            result = Math.Round(result, 2);
+            WalletBalance += result;
+
             WalletBalance = Math.Round(WalletBalance, 2);
 
             return result;

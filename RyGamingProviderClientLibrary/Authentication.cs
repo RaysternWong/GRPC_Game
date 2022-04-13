@@ -1,5 +1,4 @@
-﻿using Grpc.Net.Client;
-using RyGaming;
+﻿using RyGaming;
 using System.Threading.Tasks;
 
 namespace RyGamingProviderClientLibrary
@@ -13,21 +12,23 @@ namespace RyGamingProviderClientLibrary
 
     public class Authentication
     {
-        private GrpcChannel _grpcChannel;
-
         public Authentication()
         {
-            _grpcChannel = Connection.Channel;
+        }
+
+        public LoginResponse Login(string userName, string password)
+        {
+            return LoginAsync(userName, password).Result;
         }
 
         public async Task<LoginResponse> LoginAsync(string userName, string password)
         {
-            var client = new RyGamer.RyGamerClient(_grpcChannel);
+            var client = new RyGamer.RyGamerClient(Connection.Channel);
 
             var request = new LoginRequest()
             {
-                Name = "Win10",
-                Password = "123"
+                Name = userName,
+                Password = password
             };
 
             var response = await client.LoginAsync(request);

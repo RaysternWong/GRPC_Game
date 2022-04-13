@@ -84,7 +84,7 @@ namespace RyGamingProvider.Services
         {
             bool isSuccess = true;
             double winLossAmount = _playerRepository.WalletBalance;
-            string message = $"Successful Withdraw - {request.BetAmount}";
+            string message = $"Successful Bet - {request.BetAmount}";
 
             try
             {
