@@ -72,7 +72,7 @@ namespace RyGamingProvider
         {
             if (amount > WalletBalance)
             {
-                throw new Exception("Bet Amount is more than wallet balance");
+                throw new Exception($"Bet Amount : {amount} is more than wallet balance");
             }
 
             Random random = new Random();
@@ -80,7 +80,8 @@ namespace RyGamingProvider
             double winMax = amount;
             double result = (random.NextDouble() * (winMax - lossMax) + lossMax);
 
-            WalletBalance += result;
+            WalletBalance += Math.Round(result, 2);
+            WalletBalance = Math.Round(WalletBalance, 2);
 
             return result;
         }

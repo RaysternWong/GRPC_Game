@@ -1,7 +1,6 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using RyGaming;
-using RyGamingProvider;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -97,9 +96,6 @@ namespace GrpcGreeterClient
 
             var token = await tokenResponse.Content.ReadAsStringAsync();
             Console.WriteLine("Successfully authenticated.");
-
-            string tokenBB = TokenCreater.GenerateJwtToken(HttpUtility.UrlEncode(Environment.UserName));
-
             return token;
         }
 
