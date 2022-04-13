@@ -9,6 +9,14 @@ service RyGamer {
   rpc GetAvailableTickets (google.protobuf.Empty) returns (AvailableTicketsResponse);
   // Buy tickets
   rpc BuyTickets (BuyTicketsRequest) returns (BuyTicketsResponse);
+
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+
+  rpc TopUp (WalletTopUpRequest) returns (WalletTopUpResponse) {}
+
+  rpc Withdraw (WalletWithdrawRequest) returns (WalletWithdrawResponse) {}
+
+  rpc Bet (BetRequest) returns (BetResponse) {}
 }
 
 // The response message containing the available ticket count
@@ -24,4 +32,48 @@ message BuyTicketsRequest {
 // The response message to buy tickets
 message BuyTicketsResponse {
   bool success = 1;
+}
+
+message LoginRequest{
+  string name = 1;
+  string password =2;
+}
+
+message WalletTopUpRequest {
+  double topUpAmount =1;
+}
+
+message WalletWithdrawRequest {
+  double withdrawAmount =1;
+}
+
+
+message LoginResponse {
+	bool success = 1;
+	string message = 2;
+	string token =3;
+}
+
+message WalletTopUpResponse {
+	bool success = 1;
+	string message = 2;
+	double balanceAfter =3;   
+}
+
+message WalletWithdrawResponse {
+	bool success = 1;
+	string message = 2;
+	double balanceAfter =3;   
+}
+
+message BetRequest {
+	string userId = 1;
+	double BetAmount =2;   
+}
+
+message BetResponse {
+	bool success = 1;
+	string message = 2;
+	double balanceAfter =3;
+	double winLossAmount =4;   
 }

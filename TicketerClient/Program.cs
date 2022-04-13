@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
+﻿using Grpc.Core;
 using Grpc.Net.Client;
 using RyGaming;
 using System;
@@ -24,10 +23,11 @@ namespace GrpcGreeterClient
             Console.WriteLine("gRPC Ticketer");
             Console.WriteLine();
             Console.WriteLine("Press a key:");
-            Console.WriteLine("1: Get available tickets");
-            Console.WriteLine("2: Purchase ticket");
-            Console.WriteLine("3: Authenticate");
-            Console.WriteLine("4: Exit");
+            Console.WriteLine("1: Login");
+            Console.WriteLine("2: TopUp");
+            Console.WriteLine("3: Withdraw");
+            Console.WriteLine("4: Bet");
+            Console.WriteLine("5: Exit");
             Console.WriteLine();
 
             var exiting = false;
@@ -37,18 +37,22 @@ namespace GrpcGreeterClient
                 switch (consoleKeyInfo.KeyChar)
                 {
                     case '1':
-                        await GetAvailableTickets(client);
+                        await Login(client);
                         break;
 
                     case '2':
-                        await PurchaseTicket(client);
+                        await TopUp(client);
                         break;
 
                     case '3':
-                        _token = await Authenticate();
+                        await Withdraw(client);
                         break;
 
                     case '4':
+                        await Bet(client);
+                        break;
+
+                    case '5':
                         exiting = true;
                         break;
                 }
@@ -117,11 +121,64 @@ namespace GrpcGreeterClient
             }
         }
 
-        private static async Task GetAvailableTickets(RyGamer.RyGamerClient client)
+        private static async Task Login(RyGamer.RyGamerClient client)
         {
             Console.WriteLine("Getting available ticket count...");
-            var response = await client.GetAvailableTicketsAsync(new Empty());
-            Console.WriteLine("Available ticket count: " + response.Count);
+
+            var request = new LoginRequest()
+            {
+                Name = "Admin",
+                Password = "123"
+            };
+
+            var response = await client.LoginAsync(request);
+
+            if (response.Success)
+            {
+                _token = response.Token;
+            }
+
+            Console.WriteLine("Login Message: " + response.Message);
+        }
+
+        private static async Task Withdraw(RyGamer.RyGamerClient client)
+        {
+            var request = new WalletWithdrawRequest()
+            {
+                WithdrawAmount = 30
+            };
+
+            var response = await client.WithdrawAsync(request);
+
+            Console.WriteLine($"Withdraw Message: {response.Message} , Balance After : {response.BalanceAfter} ");
+        }
+
+        private static async Task TopUp(RyGamer.RyGamerClient client)
+        {
+            Console.WriteLine("Getting available ticket count...");
+
+            var request = new WalletTopUpRequest()
+            {
+                TopUpAmount = 100
+            };
+
+            var response = await client.TopUpAsync(request);
+
+            Console.WriteLine($"TopUp Message: {response.Message} , Balance After : {response.BalanceAfter} ");
+        }
+
+        private static async Task Bet(RyGamer.RyGamerClient client)
+        {
+            Console.WriteLine("Getting available ticket count...");
+
+            var request = new BetRequest()
+            {
+                BetAmount = 50
+            };
+
+            var response = await client.BetAsync(request);
+
+            Console.WriteLine($"Bet Message: {response.Message} , Balance After : {response.BalanceAfter} ");
         }
     }
 }
