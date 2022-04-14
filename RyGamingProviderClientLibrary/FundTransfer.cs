@@ -1,5 +1,4 @@
-﻿using RyGaming;
-using System.Threading.Tasks;
+﻿using RyGamingWalletClientLib;
 
 namespace RyGamingProviderClientLibrary
 {
@@ -16,58 +15,53 @@ namespace RyGamingProviderClientLibrary
     public class WithdrawResponse : FundTransferResponse
     { }
 
+    public class CreateResponse : FundTransferResponse
+    { }
+
     public class FundTransfer
     {
+        private string _token;
+        private WalletClient _walletClient;
+
         public FundTransfer(string token)
         {
-            Connection._token = token;
+            _token = token;
+            _walletClient = new WalletClient("localhost:5001");
         }
 
         public TopUpResponse TopUp(double amount)
         {
-            return TopUpAsync(amount).Result;
-        }
+            var response = _walletClient.TopUp(_token, amount);
 
-        public async Task<TopUpResponse> TopUpAsync(double amount)
-        {
-            var client = new RyGamer.RyGamerClient(Connection.Channel);
-
-            var request = new WalletTopUpRequest()
-            {
-                TopUpAmount = amount
-            };
-
-            var response = await client.TopUpAsync(request);
-
-            return new TopUpResponse()
+            return new TopUpResponse
             {
                 Success = response.Success,
                 Message = response.Message,
-                BalanceAfter = response.BalanceAfter
+                BalanceAfter = response.Balance
+            };
+        }
+
+        public CreateResponse Create(double amount)
+        {
+            var response = _walletClient.CreateWallet(_token, amount);
+
+            return new CreateResponse
+            {
+                Success = response.Success,
+                Message = response.Message,
+                BalanceAfter = response.Balance
             };
         }
 
         public WithdrawResponse Withdraw(double amount)
         {
-            return WithdrawAsync(amount).Result;
-        }
+            var response = _walletClient.Withdraw(_token, amount);
 
-        public async Task<WithdrawResponse> WithdrawAsync(double amount)
-        {
-            var client = new RyGamer.RyGamerClient(Connection.Channel);
-
-            var request = new WalletWithdrawRequest()
-            {
-                WithdrawAmount = amount
-            };
-
-            var response = await client.WithdrawAsync(request);
-
-            return new WithdrawResponse()
+            return new WithdrawResponse
             {
                 Success = response.Success,
                 Message = response.Message,
-                BalanceAfter = response.BalanceAfter
+                BalanceAfter = response.Balance
             };
         }
     }
