@@ -7,7 +7,7 @@ namespace RyGamingWalletClientLib
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public double BalanceAfter { get; set; }
+        public double Balance { get; set; }
     }
 
     public class TopUpResponse : FundTransferResponse
@@ -18,6 +18,10 @@ namespace RyGamingWalletClientLib
 
     public class CreateResponse : FundTransferResponse
     { }
+
+    public class CheckResponse : FundTransferResponse
+    {
+    }
 
     public class WalletClient
     {
@@ -45,7 +49,7 @@ namespace RyGamingWalletClientLib
             {
                 Success = response.Success,
                 Message = response.Message,
-                BalanceAfter = response.Balance
+                Balance = response.Balance
             };
         }
 
@@ -65,7 +69,7 @@ namespace RyGamingWalletClientLib
             {
                 Success = response.Success,
                 Message = response.Message,
-                BalanceAfter = response.Balance
+                Balance = response.Balance
             };
         }
 
@@ -85,7 +89,26 @@ namespace RyGamingWalletClientLib
             {
                 Success = response.Success,
                 Message = response.Message,
-                BalanceAfter = response.Balance
+                Balance = response.Balance
+            };
+        }
+
+        public CheckResponse Check(string token)
+        {
+            var client = new RyGamerWallet.RyGamerWalletClient(_channel);
+
+            var request = new WalletCheckRequest()
+            {
+                Token = token,
+            };
+
+            var response = client.Check(request);
+
+            return new CheckResponse
+            {
+                Success = response.Success,
+                Message = response.Message,
+                Balance = response.Balance
             };
         }
     }

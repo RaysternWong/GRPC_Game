@@ -10,11 +10,15 @@ service RyGamerWallet {
 
   rpc Create (CreateWalletRequest)  returns (CreateWalletResponse) {}
 
-  rpc Check (google.protobuf.Empty)  returns (WalletCheckResponse) {}
+  rpc Check (WalletCheckRequest)  returns (WalletCheckResponse) {}
 
   rpc TopUp (WalletTopUpRequest) returns (WalletTopUpResponse) {}
 
   rpc Withdraw (WalletWithdrawRequest) returns (WalletWithdrawResponse) {}
+}
+
+message WalletCheckRequest{
+	string token =1;
 }
 
 message WalletTopUpRequest {
@@ -49,7 +53,6 @@ message WalletCheckResponse {
  string message = 2;
  double balance =3;   
 }
-
 
 message CreateWalletResponse {
  bool success = 1;
