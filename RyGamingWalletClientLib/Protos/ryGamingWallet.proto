@@ -1,0 +1,58 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "RyGamingWallet";
+
+package RyGamingWallet;
+
+// The greeting service definition.
+service RyGamerWallet {
+
+  rpc Create (CreateWalletRequest)  returns (CreateWalletResponse) {}
+
+  rpc Check (google.protobuf.Empty)  returns (WalletCheckResponse) {}
+
+  rpc TopUp (WalletTopUpRequest) returns (WalletTopUpResponse) {}
+
+  rpc Withdraw (WalletWithdrawRequest) returns (WalletWithdrawResponse) {}
+}
+
+message WalletTopUpRequest {
+  string token =1;
+  double amount =2;
+}
+
+message WalletWithdrawRequest {
+  string token =1;
+  double amount =2;
+}
+
+message CreateWalletRequest {
+  string token =1;
+  double fundAmount = 2;
+}
+
+message WalletTopUpResponse {
+  bool success = 1;
+  string message = 2;
+  double balance =3;   
+}
+
+message WalletWithdrawResponse {
+  bool success = 1;
+  string message = 2;
+  double balance =3;   
+}
+
+message WalletCheckResponse {
+ bool success = 1;
+ string message = 2;
+ double balance =3;   
+}
+
+
+message CreateWalletResponse {
+ bool success = 1;
+ string message = 2;
+ double balance =3;   
+}

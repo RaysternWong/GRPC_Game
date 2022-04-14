@@ -6,10 +6,13 @@ namespace RyGamingWallet
 {
     public class Wallet
     {
+        public string Owner { get; set; }
+
         public double Balance { get; set; }
 
-        public Wallet(double balance)
+        public Wallet(string owner, double balance)
         {
+            Owner = owner;
             Balance = balance;
         }
     }
@@ -30,7 +33,7 @@ namespace RyGamingWallet
                 throw new Exception("The wallet for same account has been created");
             }
 
-            _wallets.Add(token, new Wallet(fundAmount));
+            _wallets.Add(token, new Wallet(token, fundAmount));
 
             return fundAmount;
         }
