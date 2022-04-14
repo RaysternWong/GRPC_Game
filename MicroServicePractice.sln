@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RyGamingProvider", "Tickete
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RyGamingProviderClient", "TicketerClient\RyGamingProviderClient.csproj", "{EFE02EAC-90B3-4551-AF69-2BF15D34EC64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyGamingProviderClientLibrary", "RyGamingProviderClientLibrary\RyGamingProviderClientLibrary.csproj", "{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RyGamingProviderClientLibrary", "RyGamingProviderClientLibrary\RyGamingProviderClientLibrary.csproj", "{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyGamingWallet", "RyGamingWallet\RyGamingWallet.csproj", "{67B21585-3ADB-4B0E-9A17-9D161FAFB6D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyGamingWalletClientLib", "RyGamingWalletClientLib\RyGamingWalletClientLib.csproj", "{FB5B6DB6-74D2-4708-A452-A2FF6CD8B16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1049E7F-2677-4D1B-BD6B-DDCB06FDCD0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B21585-3ADB-4B0E-9A17-9D161FAFB6D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B21585-3ADB-4B0E-9A17-9D161FAFB6D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B21585-3ADB-4B0E-9A17-9D161FAFB6D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B21585-3ADB-4B0E-9A17-9D161FAFB6D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5B6DB6-74D2-4708-A452-A2FF6CD8B16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5B6DB6-74D2-4708-A452-A2FF6CD8B16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5B6DB6-74D2-4708-A452-A2FF6CD8B16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5B6DB6-74D2-4708-A452-A2FF6CD8B16B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
